@@ -40,5 +40,8 @@ def keyboard_loger():
     with Listener(on_press=on_press, on_release=on_release) as listener:
         listener.join()
 
+def read_keyboard_move_from_file(dir):
+    with open(dir, "r", encoding="utf-8") as file:
+        keayboard_move = file.read()
 
-keyboard_loger()
+    return keayboard_move
