@@ -32,9 +32,10 @@ def mouse_loger():
 mouse_button = {'mouse_button': Button.left}
 
 
-def read_mouse_move_from_file(dir, mouse_position_x, mouse_position_y, mouse_dic):
+def read_mouse_move_from_file(dir):
     with open(dir, "r", encoding="utf-8") as file:
         mouse_move = file.read()
+    
+    return mouse_move
 
-# TODO: func: open file and save movment of mosuse in loger and click
 # TODO: func: read movment and make it hapend
