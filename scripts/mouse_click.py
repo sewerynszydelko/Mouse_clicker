@@ -10,6 +10,7 @@ mouse = Controller()
 
 
 def mouse_loger():
+    """ Save movment and presed button on mouse """
 
     def on_move(x, y):
         logging.info(f"Mouse moved to ({x}), ({y})")
@@ -33,9 +34,15 @@ mouse_button = {'mouse_button': Button.left}
 
 
 def read_mouse_move_from_file(dir):
+    """ Read form given file with move mouse
+    Args:
+        dir (path): path to file
+    Returns:
+        mouse_move(str): movment of mouse 
+    """
     with open(dir, "r", encoding="utf-8") as file:
         mouse_move = file.read()
-    
+
     return mouse_move
 
 # TODO: func: read movment and make it hapend
