@@ -1,5 +1,6 @@
 import logging
 import time
+import json
 from pynput.mouse import Listener, Controller, Button
 
 
@@ -30,7 +31,7 @@ def mouse_loger():
         listener.join()
 
 
-mouse_button = {'mouse_button': Button.left}
+mouse_button = [{'mouse_button': 'Button.left'}]
 
 
 def read_mouse_move_from_file(dir):
@@ -46,3 +47,19 @@ def read_mouse_move_from_file(dir):
     return mouse_move
 
 # TODO: func: read movment and make it hapend
+
+
+def save_mouse_pattern_to_json(list_mouse_pattern=0):
+
+    try:
+        with open("mouse_move.json", "r", encoding="utf-8") as file_to_read:
+            data = json.load(file_to_read)
+            print(data)
+            pass
+    except (json.JSONDecodeError, FileNotFoundError):
+        print(f"File dosn't have any data or file don't exist, will create one")
+        data = []
+
+    with open("mouse_move.json", "w", encoding="utf-8") as file_to_write:
+        data.extend(list_mouse_pattern)
+        json.dump(data, file_to_write)
