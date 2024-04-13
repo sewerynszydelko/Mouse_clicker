@@ -10,6 +10,25 @@ logging.basicConfig(filename="mouse_loger.txt",
 mouse = Controller()
 
 
+def save_mouse_pattern_to_json(file_to_save="mouse_move.json",list_mouse_pattern=[]):
+    """ Save movment of mouse in json file 
+    Args:
+        file_to_save (str, optional): name of file to save movment
+        list_mouse_pattern (list, optional): list with dict in it to save. Defaults to [].
+    """
+    try:
+        with open(file_to_save, "r", encoding="utf-8") as file_to_read:
+            data = json.load(file_to_read)
+
+    except (json.JSONDecodeError, FileNotFoundError):
+        print(f"File dosn't have any data or file don't exist, will create one")
+        data = []
+
+    with open(file_to_save, "w", encoding="utf-8") as file_to_write:
+        data.extend(list_mouse_pattern)
+        json.dump(data, file_to_write)
+
+
 def mouse_loger():
     """ Save movment and presed button on mouse """
 
@@ -34,21 +53,6 @@ def mouse_loger():
         listener.join()
 
 # TODO: func: read movment and make it hapend
-
-
-def save_mouse_pattern_to_json(list_mouse_pattern=[]):
-
-    try:
-        with open("mouse_move.json", "r", encoding="utf-8") as file_to_read:
-            data = json.load(file_to_read)
-
-    except (json.JSONDecodeError, FileNotFoundError):
-        print(f"File dosn't have any data or file don't exist, will create one")
-        data = []
-
-    with open("mouse_move.json", "w", encoding="utf-8") as file_to_write:
-        data.extend(list_mouse_pattern)
-        json.dump(data, file_to_write)
 
 
 if __name__ == "__main__":
