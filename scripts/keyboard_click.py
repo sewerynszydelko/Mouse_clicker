@@ -1,6 +1,7 @@
 """ Keaybord clicer func main file """
 import time
 import logging
+import json
 from pynput.keyboard import Key, Controller, Listener
 
 
@@ -10,6 +11,40 @@ logging.basicConfig(filename=(log_dir + "key_loger.txt"),
                     level=logging.DEBUG, format="%(message)s")
 
 keyboard = Controller()
+
+
+def save_keyboard_move_to_json(file_to_save="keyboard_move.json", list_keyboard_pattern=[]):
+    """ Save movment of mouse in json file 
+    Args:
+        file_to_save (str, optional): name of file to save movment
+        list_mouse_pattern (list, optional): list with dict in it to save. Defaults to [].
+    """
+    try:
+        with open(file_to_save, "r", encoding="utf-8") as file_to_read:
+            data = json.load(file_to_read)
+
+    except (json.JSONDecodeError, FileNotFoundError):
+        print(f"File dosn't have any data or file don't exist, will create one")
+        data = []
+
+    with open(file_to_save, "w", encoding="utf-8") as file_to_write:
+        data.extend(list_keyboard_pattern)
+        json.dump(data, file_to_write)
+
+
+def keyboard_loger():
+    """ Sace keybord presed keys , to stop press insert"""
+    def on_press(key):
+        save_keyboard_move_to_json([{"pressed_key": f"{key}"}])
+        logging.info(key)
+
+    def on_release(key):
+        if key == Key.insert:
+            listener.stop()
+
+    """ save logs of typed char in file 'key_loger.txt' to exit type insert """
+    with Listener(on_press=on_press, on_release=on_release) as listener:
+        listener.join()
 
 
 def write_sentence(sentence: str):
@@ -31,28 +66,5 @@ def pres_relise_key(key, delay=0.1):
     keyboard.release(key)
 
 
-def on_press(key):
-    logging.info(key)
-
-
-def on_release(key):
-    if key == Key.insert:
-        return False
-
-
-def keyboard_loger():
-    """ save logs of typed char in file 'key_loger.txt' to exit type insert """
-    with Listener(on_press=on_press, on_release=on_release) as listener:
-        listener.join()
-
-
-def read_keyboard_move_from_file(dir):
-    """ Reading file with move of keayboard """
-    with open(dir, "r", encoding="utf-8") as file:
-        keayboard_move = file.read()
-
-    return keayboard_move
-
-
-def save_keaybord_move_to_json(keybord_log):
-    ...
+if __name__ == "__main__":
+    keyboard_loger()
