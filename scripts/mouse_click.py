@@ -10,7 +10,7 @@ logging.basicConfig(filename="mouse_loger.txt",
 mouse = Controller()
 
 
-def save_mouse_pattern_to_json(file_to_save="mouse_move.json",list_mouse_pattern=[]):
+def save_mouse_pattern_to_json(list_mouse_pattern=[], file_to_save="mouse_move.json"):
     """ Save movment of mouse in json file 
     Args:
         file_to_save (str, optional): name of file to save movment
@@ -55,6 +55,42 @@ def mouse_loger():
 # TODO: func: read movment and make it hapend
 
 
+def mouse_pres_relise(key):
+    """ Pres and relise key of mous
+    Args:
+        key (str): Button of mouse presed
+    """
+    match key:
+        case "Button.left":
+            mouse.press(Button.left)
+            mouse.release(Button.left)
+        case "Button.right":
+            mouse.press(Button.right)
+            mouse.release(Button.right)
+        case "Button.middle":
+            mouse.press(Button.middle)
+            mouse.release(Button.middle)
+
+
+def move_mouse_from_list(movment_mouse_list: list):
+    """ Move and pres mouse from given list of dict
+    Args:
+        movment_mouse_list (list): List with movment save in dict
+    """
+    for move in movment_mouse_list:
+        key_list = list(move.keys())
+
+        if "mouse_move" in key_list:
+            mouse.move(move["mouse_move"][0], move["mouse_move"][1])
+        elif "mouse_click" in key_list:
+            mouse_pres_relise(move["mouse_click"])
+        ...
+
+
 if __name__ == "__main__":
     # mouse_loger()
+    with open("mouse_move.json", "r", encoding="utf-8") as file:
+        print("ewrything work")
+        list_movment = json.load(file)
+        move_mouse_from_list(list_movment)
     ...
