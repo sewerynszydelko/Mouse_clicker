@@ -1,3 +1,6 @@
 my_venv
 key_loger.txt
 mouse_loger.txt
+scripts/keyboard_move.json
+scripts/mouse_move.json
+.vscode/launch.json
