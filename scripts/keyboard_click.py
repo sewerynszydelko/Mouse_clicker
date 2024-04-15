@@ -13,7 +13,7 @@ logging.basicConfig(filename=(log_dir + "key_loger.txt"),
 keyboard = Controller()
 
 
-def save_keyboard_move_to_json(file_to_save="keyboard_move.json", list_keyboard_pattern=[]):
+def save_keyboard_move_to_json(list_keyboard_pattern=[], file_to_save="keyboard_move.json"):
     """ Save movment of mouse in json file 
     Args:
         file_to_save (str, optional): name of file to save movment
@@ -35,7 +35,7 @@ def save_keyboard_move_to_json(file_to_save="keyboard_move.json", list_keyboard_
 def keyboard_loger():
     """ Sace keybord presed keys , to stop press insert"""
     def on_press(key):
-        save_keyboard_move_to_json([{"pressed_key": f"{key}"}])
+        save_keyboard_move_to_json([{"pressed_key": f'{key}'}])
         logging.info(key)
 
     def on_release(key):
@@ -66,5 +66,20 @@ def pres_relise_key(key, delay=0.1):
     keyboard.release(key)
 
 
+def keyboard_auto_pres(list_presed_keys):
+    for key in list_presed_keys:
+        key_list = list(key.keys())
+
+        if "pressed_key" in key_list:
+            pres_relise_key(key["pressed_key"])
+        elif "Key" in key_list["pressed_key"]:
+            print("found it")
+    ...
+
+
 if __name__ == "__main__":
+    
+    # with open("keyboard_move.json", "r",encoding="utf-8") as file:
+    #     list_presed_keys = json.load(file)
+    #     keyboard_auto_pres(list_presed_keys)
     keyboard_loger()
