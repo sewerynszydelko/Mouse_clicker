@@ -55,21 +55,18 @@ def mouse_loger():
 # TODO: func: read movment and make it hapend
 
 
-def mouse_pres_relise(key):
+def mouse_click_relise(key):
     """ Pres and relise key of mous
     Args:
         key (str): Button of mouse presed
     """
     match key:
         case "Button.left":
-            mouse.press(Button.left)
-            mouse.release(Button.left)
+            mouse.click(Button.left)
         case "Button.right":
-            mouse.press(Button.right)
-            mouse.release(Button.right)
+            mouse.click(Button.right)
         case "Button.middle":
-            mouse.press(Button.middle)
-            mouse.release(Button.middle)
+            mouse.click(Button.middle)
 
 
 def move_mouse_from_list(movment_mouse_list: list):
@@ -83,7 +80,7 @@ def move_mouse_from_list(movment_mouse_list: list):
         if "mouse_move" in key_list:
             mouse.move(move["mouse_move"][0], move["mouse_move"][1])
         elif "mouse_click" in key_list:
-            mouse_pres_relise(move["mouse_click"])
+            mouse_click_relise(move["mouse_click"])
         ...
 
 
