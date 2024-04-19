@@ -35,8 +35,8 @@ def save_keyboard_move_to_json(list_keyboard_pattern=[], file_to_save="keyboard_
 def keyboard_loger():
     """ Sace keybord presed keys , to stop press insert"""
     def on_press(key):
-        save_keyboard_move_to_json([{"pressed_key": f'{key}'}])
         logging.info(key)
+        save_keyboard_move_to_json([{"pressed_key": f'{key}'}])
 
     def on_release(key):
         if key == Key.insert:
@@ -74,12 +74,14 @@ def keyboard_auto_pres(list_presed_keys):
             pres_relise_key(key["pressed_key"])
         elif "Key" in key_list["pressed_key"]:
             print("found it")
+        else:
+            print("not work")
     ...
 
 
 if __name__ == "__main__":
-    
-    # with open("keyboard_move.json", "r",encoding="utf-8") as file:
-    #     list_presed_keys = json.load(file)
-    #     keyboard_auto_pres(list_presed_keys)
-    keyboard_loger()
+
+    with open("keyboard_move.json", "r",encoding="utf-8") as file:
+        list_presed_keys = json.load(file)
+        keyboard_auto_pres(list_presed_keys)
+    #keyboard_loger()
