@@ -8,6 +8,7 @@ import mouse_click
 
 
 def menu_print():
+    "Print menu of choice to user"
     print("You can chose to:\
           \n1: Run mouse log movment(to top pres cicrcle or middle)\
           \n2: Run already saved move\
@@ -15,6 +16,7 @@ def menu_print():
 
 
 def loop_menu():
+    "Its loop menu to chose betwi options"
     while True:
         print("Hello welcom in mouse loger")
         time.sleep(1)
