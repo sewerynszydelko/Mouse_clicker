@@ -70,10 +70,10 @@ def keyboard_auto_pres(list_presed_keys):
     for key in list_presed_keys:
         key_list = list(key.keys())
 
-        if "pressed_key" in key_list:
-            pres_relise_key(key["pressed_key"])
-        elif "Key" in key_list["pressed_key"]:
+        if key["pressed_key"].find("Key"):
             print("found it")
+        elif "pressed_key" in key_list:
+            pres_relise_key(key["pressed_key"])
         else:
             print("not work")
     ...
@@ -81,7 +81,7 @@ def keyboard_auto_pres(list_presed_keys):
 
 if __name__ == "__main__":
 
-    with open("keyboard_move.json", "r",encoding="utf-8") as file:
+    with open("keyboard_move.json", "r", encoding="utf-8") as file:
         list_presed_keys = json.load(file)
         keyboard_auto_pres(list_presed_keys)
-    #keyboard_loger()
+    # keyboard_loger()
