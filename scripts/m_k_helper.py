@@ -17,6 +17,12 @@ class Controller():
         self.keyboard.release(key_to_pres_relise)
         sleep(self.wait)
 
+    def click_at_position(self, cordinate_x, cordinate_y, preses=1, button=mouse.Button.left):
+        self.mouse.position = (cordinate_x, cordinate_y)
+        sleep(self.wait)
+        self.mouse.click(button, preses)
+        sleep(self.wait)
+
     def write_sentenc(self, sentence):
         sleep(self.wait)
         self.keyboard.type(sentence)
@@ -29,6 +35,7 @@ class Controller():
         self.keyboard.release(key_to_hold)
         self.keyboard.release(key_to_press)
 
+
 if __name__ == "__main__":
 
     # Keyboard
@@ -39,39 +46,13 @@ if __name__ == "__main__":
     controller.click_key(keyboard.Key.enter)
     controller.hold_and_press_key(keyboard.Key.cmd_l, keyboard.Key.up)
 
+    # Mouse
 
-    # time.sleep(1)
-    # controler.press(keyboard.Key.cmd_l)
-    # controler.press(keyboard.Key.up)
-
-    # with controler.pressed(keyboard.Key.cmd_l):
-    #     controler.release(keyboard.Key.up)
-
-    # time.sleep(1)
-
-    # # Mouse
-    # mouse_controler = mouse.Controller()
-
-    # mouse_controler.position = (373, 105)
-    # time.sleep(0.5)
-    # mouse_controler.click(mouse.Button.left, 1)
-    # time.sleep(0.5)
-    # mouse_controler.position = (366, 143)
-    # time.sleep(0.5)
-    # mouse_controler.click(mouse.Button.left, 1)
-    # time.sleep(0.5)
-    # mouse_controler.position = (890, 64)
-    # time.sleep(0.5)
-    # mouse_controler.click(mouse.Button.left, 1)
-    # time.sleep(0.5)
-    # mouse_controler.position = (705, 91)
-    # time.sleep(0.5)
-    # mouse_controler.click(mouse.Button.left, 1)
-    # time.sleep(0.5)
-    # mouse_controler.position = (734, 222)
-    # time.sleep(0.5)
-    # mouse_controler.click(mouse.Button.left, 1)
-    # time.sleep(1)
+    controller.click_at_position(373, 105)
+    controller.click_at_position(366, 143)
+    controller.click_at_position(890, 64)
+    controller.click_at_position(705, 91)
+    controller.click_at_position(734, 222)
 
     # # Drawing
     # mouse_controler.position = (800, 300)
