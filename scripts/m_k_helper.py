@@ -18,10 +18,21 @@ class Controller():
         sleep(self.wait)
 
     def click_at_position(self, cordinate_x, cordinate_y, preses=1, button=mouse.Button.left):
-        self.mouse.position = (cordinate_x, cordinate_y)
+        self.set_positon(cordinate_x, cordinate_y)
         sleep(self.wait)
         self.mouse.click(button, preses)
         sleep(self.wait)
+
+    def set_positon(self, cordinate_x, cordinate_y):
+        self.mouse.position = (cordinate_x, cordinate_y)
+
+    def pres_move_cursor(self,position_x, position_y, move_x, move_y,button=mouse.Button.left):
+        self.set_positon(position_x, position_y)
+        self.mouse.press(button)
+        sleep(self.wait)
+        self.mouse.move(move_x,move_y)
+        sleep(self.wait)
+        self.mouse.release(button)
 
     def write_sentenc(self, sentence):
         sleep(self.wait)
@@ -55,6 +66,8 @@ if __name__ == "__main__":
     controller.click_at_position(734, 222)
 
     # # Drawing
+
+    controller.pres_move_cursor(800,300,500,100)
     # mouse_controler.position = (800, 300)
     # mouse_controler.press(mouse.Button.left)
     # time.sleep(1)
