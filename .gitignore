@@ -4,3 +4,4 @@ mouse_loger.txt
 scripts/keyboard_move.json
 scripts/mouse_move.json
 .vscode/launch.json
+scripts/__pycache__/mouse_click.cpython-312.pyc
