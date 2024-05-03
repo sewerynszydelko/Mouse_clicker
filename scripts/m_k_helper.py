@@ -1,3 +1,4 @@
+import json
 from time import sleep
 from pynput import keyboard, mouse
 
@@ -80,36 +81,43 @@ class Controller():
         self.keyboard.release(key_to_press)
 
 
+class Process():
+
+    def __init__(self, filename) -> None:
+        self.filename = filename
+        self.steps = []
+
+    def load_steps(self):
+        with open(self.filename) as file:
+            self.steps = json.load(file)["steps"]
+
+    def start(self):
+        print(self.steps)
+
+
 if __name__ == "__main__":
 
+    # Procesing json
+    process = Process("action.json")
+    process.load_steps()
+    process.start()
+
     # Keyboard
-    controller = Controller()
+    # controller = Controller()
 
-    controller.click_key(keyboard.Key.cmd_l)
-    controller.write_sentenc("paint")
-    controller.click_key(keyboard.Key.enter)
-    controller.hold_and_press_key(keyboard.Key.cmd_l, keyboard.Key.up)
+    # controller.click_key(keyboard.Key.cmd_l)
+    # controller.write_sentenc("paint")
+    # controller.click_key(keyboard.Key.enter)
+    # controller.hold_and_press_key(keyboard.Key.cmd_l, keyboard.Key.up)
 
-    # Mouse
+    # # Mouse
 
-    controller.click_at_position(373, 105)
-    controller.click_at_position(366, 143)
-    controller.click_at_position(890, 64)
-    controller.click_at_position(705, 91)
-    controller.click_at_position(734, 222)
+    # controller.click_at_position(373, 105)
+    # controller.click_at_position(366, 143)
+    # controller.click_at_position(890, 64)
+    # controller.click_at_position(705, 91)
+    # controller.click_at_position(734, 222)
 
     # # Drawing
 
-    controller.pres_move_cursor(800, 300, 500, 100)
-    # mouse_controler.position = (800, 300)
-    # mouse_controler.press(mouse.Button.left)
-    # time.sleep(1)
-    # mouse_controler.move(50, 100)
-    # mouse_controler.release(mouse.Button.left)
-    # mouse_controler.press(mouse.Button.left)
-    # time.sleep(1)
-    # mouse_controler.move(0, 400)
-    # time.sleep(1)
-    # mouse_controler.move(200, 0)
-    # time.sleep(1)
-    # mouse_controler.release(mouse.Button.left)
+    # controller.pres_move_cursor(800, 300, 500, 100)
