@@ -59,13 +59,13 @@ class Controller():
         sleep(self.wait)
         self.mouse.release(button)
 
-    def write_sentenc(self, sentence):
+    def type(self, text):
         """ Writing full sentence
         Args:
-            sentence (str): Sentenc to write
+            sentence (str): text to write
         """
         sleep(self.wait)
-        self.keyboard.type(sentence)
+        self.keyboard.type(text)
 
     def hold_and_press_key(self, key_to_hold, key_to_press):
         """ Holding and presing 2 difrent key
@@ -83,7 +83,8 @@ class Controller():
 
 class Process():
 
-    def __init__(self, filename) -> None:
+    def __init__(self, filename, controller) -> None:
+        self.controller = controller
         self.filename = filename
         self.steps = []
 
@@ -92,13 +93,24 @@ class Process():
             self.steps = json.load(file)["steps"]
 
     def start(self):
-        print(self.steps)
+        options = {
+            'type': self.controller.type,
+            'click_key': lambda key_to_pres_relise: self.controller.click_key(getattr(keyboard.Key, key_to_pres_relise)),
+            'hold_and_press_key': lambda key_to_hold, key_to_press: self.controller.hold_and_press_key(getattr(keyboard.Key, key_to_hold), getattr(keyboard.Key, key_to_press))
+
+        }
+        for step in self.steps:
+            for key, value in step.items():
+                options[key](**value)
+
+            print(step)
 
 
 if __name__ == "__main__":
 
     # Procesing json
-    process = Process("action.json")
+    controller = Controller()
+    process = Process("action.json", controller)
     process.load_steps()
     process.start()
 
