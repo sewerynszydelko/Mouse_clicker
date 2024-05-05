@@ -1,0 +1,63 @@
+{
+    "steps": [
+        {
+            "click_key": {
+                "key_to_pres_relise": "cmd_l"
+            }
+        },
+        {
+            "type": {
+                "text": "paint"
+            }
+        },
+        {
+            "click_key": {
+                "key_to_pres_relise": "enter"
+            }
+        },
+        {
+            "hold_and_press_key": {
+                "key_to_hold": "cmd_l",
+                "key_to_press": "up"
+            }
+        },
+        {
+            "click_at_position": {
+                "cordinate_x": 373,
+                "cordinate_y": 105
+            }
+        },
+        {
+            "click_at_position": {
+                "cordinate_x": 366,
+                "cordinate_y": 143
+            }
+        },
+        {
+            "click_at_position": {
+                "cordinate_x": 890,
+                "cordinate_y": 64
+            }
+        },
+        {
+            "click_at_position": {
+                "cordinate_x": 705,
+                "cordinate_y": 91
+            }
+        },
+        {
+            "click_at_position": {
+                "cordinate_x": 734,
+                "cordinate_y": 222
+            }
+        },
+        {
+            "pres_move_cursor": {
+                "position_x": 800,
+                "position_y": 300,
+                "move_x": 500,
+                "move_y": 100
+            }
+        }
+    ]
+}
