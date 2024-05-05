@@ -96,7 +96,9 @@ class Process():
         options = {
             'type': self.controller.type,
             'click_key': lambda key_to_pres_relise: self.controller.click_key(getattr(keyboard.Key, key_to_pres_relise)),
-            'hold_and_press_key': lambda key_to_hold, key_to_press: self.controller.hold_and_press_key(getattr(keyboard.Key, key_to_hold), getattr(keyboard.Key, key_to_press))
+            'hold_and_press_key': lambda key_to_hold, key_to_press: self.controller.hold_and_press_key(getattr(keyboard.Key, key_to_hold), getattr(keyboard.Key, key_to_press)),
+            'click_at_position': self.controller.click_at_position,
+            'pres_move_cursor': self.controller.pres_move_cursor
 
         }
         for step in self.steps:
