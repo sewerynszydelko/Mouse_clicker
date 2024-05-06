@@ -1,3 +1,4 @@
+""" In this file is script help you get posiotns of mouse i presed place"""
 from pynput import mouse
 
 
